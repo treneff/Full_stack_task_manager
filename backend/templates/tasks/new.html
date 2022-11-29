@@ -1,0 +1,55 @@
+{% extends "base.html" %} {% block content %}
+<div class="main-container">
+    <div class="return-button-wrap">
+        <a class="project_task-anchor" href="/projects/{{project.id}}/tasks">
+            <span
+                class="material-symbols-outlined"
+                style="font-size: 35px; text-shadow: 2px 0px 1px black">
+                close
+            </span>
+        </a>
+    </div>
+    <form class="main-form" action="/projects/{{project.id}}/tasks" method="POST">
+        <div class="input-form-wrapper">
+            <h1>Add a new task</h1>
+            <div>
+                <label for="title">Title:</label>
+                <input class="form-input" type="text" id="title" name="title" required />
+            </div>
+            <div>
+                <label for="description">Description:</label>
+                <textarea
+                    class="form-input"
+                    type="text"
+                    id="description"
+                    name="description"
+                    required></textarea>
+            </div>
+            <div>
+                <label for="user">User:</label>
+                <select class="form-input" name="user_id" id="user">
+                    {% for user in users %}
+                    <option value="{{ user.id }}">{{ user.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <label for="project">Project:</label>
+                <select class="form-input" name="project_id" id="project">
+                    {% for project in projects %}
+                    <option value="{{ project.id }}">{{ project.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="project_task-anchor form-submit-btn">
+                <span
+                    class="material-symbols-outlined"
+                    style="font-size: 35px; text-shadow: 2px 0px 1px black">
+                    done
+                </span>
+            </button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

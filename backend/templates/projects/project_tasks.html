@@ -1,0 +1,112 @@
+{% extends "base.html" %} {% block content %}
+<div class="sticky-header">
+    <div class="return-button-wrap">
+        <a class="project_task-anchor" href="/projects">
+            <span
+                class="material-symbols-outlined task-btn"
+                style="font-size: 35px; text-shadow: 2px 0px 1px black">
+                close
+            </span>
+        </a>
+    </div>
+    <div class="background-small_header"><h1>{{project.name}}</h1></div>
+</div>
+
+<div class="main-container">
+    <section class="tasks-container">
+        <h2>To Do</h2>
+        <ul>
+            {% for task in tasks %} {% if task.completed == False %}
+            <li class="task-wrapper">
+                <div class="project_task-anchor">
+                    <a href="/projects/{{project.id}}/tasks/{{task.id}}/edit">
+                        <h3>{{ task.title }}</h3>
+                    </a>
+                </div>
+                <a
+                    class="project_task-anchor description-display"
+                    href="/projects/{{project.id}}/tasks/{{task.id}}/edit">
+                    <p>{{ task.description}}</p>
+                </a>
+                <div class="task-buttons">
+                    <form
+                        action="/projects/{{project.id}}/tasks/{{task.id}}/status_update"
+                        method="POST">
+                        <button type="submit" value="True" id="completed" name="completed">
+                            <span
+                                class="material-symbols-outlined task-btn"
+                                style="font-size: 35px; color: red; text-shadow: 2px 0px 1px black">
+                                done</span
+                            >
+                        </button>
+                    </form>
+                    <form action="/projects/{{project.id}}/tasks/{{task.id}}/delete" method="POST">
+                        <button>
+                            <span
+                                class="material-symbols-outlined task-btn"
+                                style="font-size: 35px; text-shadow: 2px 0px 1px black">
+                                close
+                            </span>
+                        </button>
+                    </form>
+                </div>
+            </li>
+            {% endif %} {% endfor %}
+        </ul>
+    </section>
+
+    <section class="tasks-container">
+        <h2>Completed Tasks</h2>
+        <ul>
+            {% for task in tasks %} {% if task.completed == True %}
+            <li class="task-wrapper">
+                <div class="project_task-anchor">
+                    <a href="/projects/{{project.id}}/tasks/{{task.id}}/edit">
+                        <h3>{{ task.title }}</h3>
+                    </a>
+                </div>
+                <a
+                    class="project_task-anchor description-display"
+                    href="/projects/{{project.id}}/tasks/{{task.id}}/edit">
+                    <p>{{ task.description }}</p>
+                </a>
+                <div class="task-buttons">
+                    <form
+                        action="/projects/{{project.id}}/tasks/{{task.id}}/status_update"
+                        method="POST">
+                        <button type="submit" value="False" id="completed" name="completed">
+                            <span
+                                class="material-symbols-outlined task-btn"
+                                style="
+                                    font-size: 35px;
+                                    color: green;
+                                    text-shadow: 2px 0px 1px black;
+                                ">
+                                done</span
+                            >
+                        </button>
+                    </form>
+                    <form action="/projects/{{project.id}}/tasks/{{task.id}}/delete" method="POST">
+                        <button>
+                            <span
+                                class="material-symbols-outlined task-btn"
+                                style="font-size: 35px; text-shadow: 2px 0px 1px black">
+                                close
+                            </span>
+                        </button>
+                    </form>
+                </div>
+            </li>
+            {% endif %} {% endfor %}
+        </ul>
+    </section>
+    <a href="/projects/{{project.id}}/tasks/new" class="add-item-btn">
+        <span
+            class="material-symbols-outlined"
+            style="font-size: 65px; text-shadow: 2px 0px 1px var(--secondary-color)">
+            add
+        </span>
+    </a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="main-container">
+    <form class="main-form" action="/projects/{{project.id}}/tasks" method="post">
+        <div class="return-button-wrap">
+            <button href="/projects/{{project.id}}/tasks">
+                <span class="material-symbols-outlined task-btn" style="font-size: 35px"> close </span>
+            </button>
+        </div>
+        <div class="input-form-wrapper"> 
+            <div>
+                <label for="title">Title:</label>
+                <input class="form-input" type="text" id="title" name="title" value="{{task.title}}" required autofocus>
+            </div>
+            <div>
+                <label for="description">Description:</label>
+                <textarea class="form-input" type="text" id="description" name="description" value="{{task.description}}" required >{{task.description}}</textarea>
+            </div>
+            <div>
+                <label for="user_id">User:</label>
+                <select class="form-input" id="user_id" name="user_id">
+                {% for user in users %}
+                    <option value="{{ user.id }}">
+                    {{user.name}}
+                    </option>
+                {% endfor %}
+                </select>
+            </div>
+            <div>
+                <label for="project_id">Details:</label>
+                <select class="form-input" id="project_id" name="project_id">
+                {% for project in projects %}
+                    <option value="{{ project.id }}">
+                    {{project.name}}
+                    </option>
+                {% endfor %}
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="project_task-anchor form-submit-btn" href="/projects/{{project.id}}/tasks">
+            <span class="material-symbols-outlined" style="font-size: 35px"> done </span>
+        </button>
+    </form>
+</div>
+{% endblock %}

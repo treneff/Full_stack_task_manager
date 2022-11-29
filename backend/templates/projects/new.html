@@ -1,0 +1,25 @@
+{% extends "base.html" %} {% block content %}
+<div class="main-container">
+    <div class="return-button-wrap">
+        <a class="project_task-anchor" href="/projects">
+            <span class="material-symbols-outlined" style="font-size: 35px"> close </span>
+        </a>
+    </div>
+
+    <form class="main-form" action="/projects" method="POST">
+        <div class="background-small_header">
+            <h1>Add a project to your worklist</h2>
+        </div>
+        <div class="input-form-wrapper"> 
+            <div>
+                <label for="name">Name</label>
+                <input class="form-input" type="text" id="name" name="name" required />
+            </div>
+            <button type="submit" class="project_task-anchor form-submit-btn">
+                <span class="material-symbols-outlined" style="font-size: 35px"> done </span>
+            </button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

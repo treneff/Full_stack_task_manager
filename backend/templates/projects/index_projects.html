@@ -1,0 +1,27 @@
+{% extends "base.html" %} {% block content %}
+<div class="main-container">
+    <div class="background-small_header"><h1>Projects</h1></div>
+<section class="tasks-container">
+    <ul>   
+{% for project in projects %}
+    <li class="projects-wrapper">
+        <a class="project_task-anchor project-anchor" href="/projects/{{project.id}}/tasks">
+            <h3>{{ project.name }}</h3>
+        </a>
+        <form action="/projects/{{project.id}}/delete" method="POST">
+            <button>
+                <span class="material-symbols-outlined task-btn" style="font-size: 35px"> close </span>
+            </button>
+        </form>
+    </li> 
+{% endfor %}
+    <ul>
+</section>
+<a href="/projects/new" class="add-item-btn">
+    <span class="material-symbols-outlined" style="font-size: 65px; "> add </span>
+</a>
+
+{% endblock %}
+</div>
+
+

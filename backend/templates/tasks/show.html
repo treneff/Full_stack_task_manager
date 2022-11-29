@@ -1,0 +1,10 @@
+{% extends "base.html" %} {% block content %}
+
+<div>
+    <p>{{task.title}}</p>
+    <hr />
+    <p>{{task.description}}</p>
+    <p><a href="/tasks/{{task.id}}/edit">Edit</a></p>
+</div>
+
+{% endblock %}
